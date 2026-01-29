@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cool Fox Heating & Cooling Design System
+   Black + Gold + Tan | Premium Arizona HVAC */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Black/Gold/Tan */
+    --background: 30 8% 8%;
+    --foreground: 38 30% 92%;
+
+    --card: 30 10% 12%;
+    --card-foreground: 38 30% 92%;
+
+    --popover: 30 10% 12%;
+    --popover-foreground: 38 30% 92%;
+
+    /* Gold Primary */
+    --primary: 43 70% 50%;
+    --primary-foreground: 30 8% 5%;
+
+    /* Tan Secondary */
+    --secondary: 35 25% 22%;
+    --secondary-foreground: 38 30% 92%;
+
+    --muted: 30 12% 16%;
+    --muted-foreground: 35 15% 55%;
+
+    /* Gold Accent */
+    --accent: 43 70% 50%;
+    --accent-foreground: 30 8% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 15% 22%;
+    --input: 35 15% 22%;
+    --ring: 43 70% 50%;
+
+    --radius: 0.5rem;
+
+    /* Extended Brand Palette */
+    --gold: 43 70% 50%;
+    --gold-light: 43 75% 62%;
+    --gold-dark: 40 65% 38%;
+    --black-deep: 30 8% 5%;
+    --black: 30 8% 8%;
+    --black-light: 30 10% 14%;
+    --tan: 35 30% 75%;
+    --tan-light: 38 30% 92%;
+    --tan-muted: 35 20% 55%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(43 70% 55%), hsl(40 65% 38%));
+    --gradient-gold-shine: linear-gradient(135deg, hsl(43 75% 62%), hsl(43 70% 50%), hsl(40 65% 38%));
+    --gradient-dark: linear-gradient(180deg, hsl(30 8% 10%), hsl(30 8% 5%));
+    --gradient-hero-overlay: linear-gradient(180deg, hsla(30, 8%, 5%, 0.88) 0%, hsla(30, 8%, 5%, 0.65) 50%, hsla(30, 8%, 5%, 0.92) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(30 10% 14%), hsl(30 10% 10%));
+    --gradient-card-hover: linear-gradient(145deg, hsl(30 12% 16%), hsl(30 10% 12%));
+
+    /* Shadows */
+    --shadow-gold: 0 4px 25px -5px hsla(43, 70%, 50%, 0.35);
+    --shadow-gold-glow: 0 0 40px -10px hsla(43, 70%, 50%, 0.4);
+    --shadow-card: 0 10px 40px -15px hsla(30, 8%, 0%, 0.6);
+    --shadow-elevated: 0 25px 60px -20px hsla(30, 8%, 0%, 0.8);
+    --shadow-inner: inset 0 2px 4px hsla(30, 8%, 0%, 0.3);
+
+    /* Sidebar (keeping for compatibility) */
+    --sidebar-background: 30 8% 5%;
+    --sidebar-foreground: 38 30% 92%;
+    --sidebar-primary: 43 70% 50%;
+    --sidebar-primary-foreground: 30 8% 5%;
+    --sidebar-accent: 35 25% 22%;
+    --sidebar-accent-foreground: 38 30% 92%;
+    --sidebar-border: 35 15% 22%;
+    --sidebar-ring: 43 70% 50%;
+  }
+
+  .dark {
+    /* Same as root - this is a dark-first design */
+    --background: 30 8% 8%;
+    --foreground: 38 30% 92%;
+    --card: 30 10% 12%;
+    --card-foreground: 38 30% 92%;
+    --popover: 30 10% 12%;
+    --popover-foreground: 38 30% 92%;
+    --primary: 43 70% 50%;
+    --primary-foreground: 30 8% 5%;
+    --secondary: 35 25% 22%;
+    --secondary-foreground: 38 30% 92%;
+    --muted: 30 12% 16%;
+    --muted-foreground: 35 15% 55%;
+    --accent: 43 70% 50%;
+    --accent-foreground: 30 8% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 35 15% 22%;
+    --input: 35 15% 22%;
+    --ring: 43 70% 50%;
+    --sidebar-background: 30 8% 5%;
+    --sidebar-foreground: 38 30% 92%;
+    --sidebar-primary: 43 70% 50%;
+    --sidebar-primary-foreground: 30 8% 5%;
+    --sidebar-accent: 35 25% 22%;
+    --sidebar-accent-foreground: 38 30% 92%;
+    --sidebar-border: 35 15% 22%;
+    --sidebar-ring: 43 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  .text-gradient-gold-shine {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold-shine);
+  }
+
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .bg-gradient-gold-shine {
+    background: var(--gradient-gold-shine);
+  }
+
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .bg-hero-overlay {
+    background: var(--gradient-hero-overlay);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .bg-gradient-card-hover {
+    background: var(--gradient-card-hover);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-gold-glow {
+    box-shadow: var(--shadow-gold-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-inner-dark {
+    box-shadow: var(--shadow-inner);
+  }
+
+  .gold-border {
+    @apply border border-primary/30;
+  }
+
+  .gold-border-strong {
+    @apply border-2 border-primary;
+  }
+
+  .gold-border-glow {
+    @apply border border-primary/50;
+    box-shadow: 0 0 15px -3px hsla(43, 70%, 50%, 0.3);
+  }
+
+  /* Premium card styles */
+  .card-premium {
+    @apply bg-gradient-card border border-border rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-premium:hover {
+    @apply bg-gradient-card-hover border-primary/40;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Divider with gold accent */
+  .divider-gold {
+    @apply w-20 h-1 bg-gradient-gold rounded-full mx-auto;
+  }
+
+  /* Text shadow for hero text */
+  .text-shadow {
+    text-shadow: 0 2px 10px hsla(30, 8%, 0%, 0.5);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+}
