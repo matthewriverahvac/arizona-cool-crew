@@ -35,7 +35,7 @@ const Services = () => {
     {
       icon: <Wrench className="w-7 h-7" />,
       title: "AC Repair",
-      description: "Fast diagnostics, honest pricing, and repairs that last — even in 110° heat. We fix all brands and models.",
+      description: "Fast diagnostics, transparent pricing, and reliable repairs built to last — even in 110° Arizona heat. We service all brands and models.",
     },
     {
       icon: <Snowflake className="w-7 h-7" />,
@@ -64,13 +64,13 @@ const Services = () => {
     },
     {
       icon: <Thermometer className="w-7 h-7" />,
-      title: "Heating Services",
-      description: "Furnace repair, installation, and maintenance. Stay warm during Arizona's cold desert nights.",
+      title: "Indoor Air Quality Services",
+      description: "Breathe easier with solutions designed to reduce dust, allergens, and airborne contaminants. Our air quality services help create a healthier, more comfortable home year-round.",
     },
     {
       icon: <Shield className="w-7 h-7" />,
-      title: "System Protection",
-      description: "Extended warranties and protection plans to safeguard your investment. Peace of mind for years to come.",
+      title: "Heating Services",
+      description: "Furnace repair, installation, and maintenance. Stay warm during Arizona's cold desert nights.",
     },
   ];
 

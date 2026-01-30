@@ -22,8 +22,7 @@ const Mission = () => {
           {/* Mission Statement */}
           <blockquote className="opacity-0 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <p className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight mb-8">
-              "To deliver <span className="text-gradient-gold-shine">honest, dependable</span> HVAC service that treats every customer like family — because in Arizona's extreme heat, 
-              <span className="text-gradient-gold-shine"> comfort isn't a luxury, it's a necessity.</span>"
+              "At Cool Fox Heating & Cooling, our mission is simple: to bring <span className="text-gradient-gold-shine">comfort, quality, and care</span> into every home we serve — from our family to yours. We are dedicated to delivering dependable heating and cooling solutions built on a foundation of <span className="text-gradient-gold-shine">integrity, honesty, and complete transparency.</span>"
             </p>
           </blockquote>
           

@@ -18,7 +18,6 @@ const Header = () => {
   const navLinks = [
     { href: "#services", label: "Services" },
     { href: "#why-us", label: "Why Us" },
-    { href: "#reviews", label: "Reviews" },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -37,7 +36,7 @@ const Header = () => {
             <img
               src={logo}
               alt="Cool Fox Heating & Cooling"
-              className="h-14 w-auto rounded-lg shadow-card"
+              className="h-16 w-auto shadow-card"
             />
           </a>
 

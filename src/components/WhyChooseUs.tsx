@@ -88,7 +88,7 @@ const WhyChooseUs = () => {
             {/* Anti-Corporate Callout */}
             <div className="card-premium p-6 mb-8 gold-border-glow opacity-0 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
               <p className="text-foreground font-display text-xl mb-2">
-                "Tired of Being Gouged by Big Corporate Companies?"
+                "Tired of Being Gouged by Big Corporate Companies"
               </p>
               <p className="text-muted-foreground">
                 We get it. That's exactly why we started Cool Fox. Real service. Real pricing. Real people.

@@ -80,18 +80,10 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
           <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            {/* Owner Card */}
-            <div className="card-premium flex items-center gap-6 p-6 mb-6">
-              <img 
-                src={badge} 
-                alt="Cool Fox" 
-                className="w-20 h-20 rounded-full shadow-gold-glow"
-              />
-              <div>
-                <h3 className="font-display text-xl text-foreground">Matthew Rivera</h3>
-                <p className="text-primary">Owner & Operator</p>
-                <p className="text-muted-foreground text-sm mt-1">Family Owned • No Corporate Pricing</p>
-              </div>
+            {/* Family Owned Message */}
+            <div className="card-premium p-8 mb-8 bg-gradient-to-r from-primary/5 to-transparent border border-primary/30">
+              <p className="font-display text-2xl md:text-3xl text-gradient-gold-shine mb-2">Family Owned</p>
+              <p className="font-display text-2xl md:text-3xl text-foreground">No Corporate Pricing</p>
             </div>
             
             <div className="space-y-4">

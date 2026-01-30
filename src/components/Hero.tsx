@@ -41,7 +41,7 @@ const Hero = () => {
           
           {/* Anti-Corporate Hook */}
           <p className="text-lg md:text-xl text-foreground/90 mb-4 opacity-0 animate-fade-in font-medium" style={{ animationDelay: "0.5s" }}>
-            Tired of Being Gouged by Big Corporate Companies?
+            Tired of Being Gouged by Big Corporate Companies
           </p>
           
           {/* Subheadline */}
