@@ -20,16 +20,32 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    
-    setFormData({ name: "", phone: "", email: "", serviceType: "residential", message: "" });
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        setFormData({ name: "", phone: "", email: "", serviceType: "residential", message: "" });
+      } else {
+        toast({
+          title: "Error",
+          description: "There was a problem sending your request. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "There was a problem sending your request. Please try again later.",
+        variant: "destructive",
+      });
+    }
     setIsSubmitting(false);
   };
 
