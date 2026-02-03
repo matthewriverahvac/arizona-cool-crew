@@ -85,13 +85,13 @@ const WhyChooseUs = () => {
               We believe you deserve honest service at a fair price — from a team that actually cares.
             </p>
             
-            {/* Anti-Corporate Callout */}
+            {/* Company Philosophy */}
             <div className="card-premium p-6 mb-8 gold-border-glow opacity-0 animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
-              <p className="text-foreground font-display text-xl mb-2">
-                "Tired of Being Gouged by Big Corporate Companies"
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Cool Fox was built to give Arizona homeowners an honest alternative to big corporate HVAC companies. We believe HVAC service should be straightforward, transparent, and fairly priced — not confusing or inflated. Our team focuses on clear recommendations, dependable workmanship, and doing what's right for your home, not what pads a sales quota.
               </p>
-              <p className="text-muted-foreground">
-                We get it. That's exactly why we started Cool Fox. Real service. Real pricing. Real people.
+              <p className="text-muted-foreground leading-relaxed">
+                When you choose Cool Fox, you're working with real people who take pride in their work and genuinely care about your comfort, your time, and your trust.
               </p>
             </div>
           </div>
