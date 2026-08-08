@@ -1,0 +1,48 @@
+import type { SiteConfig } from "./types";
+
+export const siteConfig: SiteConfig = {
+  legalName: "Cool Fox Heating & Cooling LLC",
+  displayName: "Cool Fox Heating & Cooling",
+  phone: "(623) 889-1281",
+  phoneHref: "tel:+16238891281",
+  email: "Service@cool-fox.com",
+  rocNumber: "361981",
+  baseUrl: "https://www.cool-fox.com",
+  serviceAreas: [
+    "Phoenix",
+    "Glendale",
+    "Peoria",
+    "Surprise",
+    "Goodyear",
+    "Avondale",
+    "Buckeye",
+    "Scottsdale",
+    "Mesa",
+    "Chandler",
+    "Tempe",
+    "Apache Junction",
+    "New River",
+    "Black Canyon City",
+    "Dewey-Humboldt",
+    "Prescott Valley",
+    "Prescott",
+  ],
+  claims: [
+    { text: "Family owned", approved: true, evidenceNote: "Approved business claim" },
+    { text: "Licensed and insured", approved: true, evidenceNote: "Approved business claim" },
+    { text: "Same-day service", approved: true, evidenceNote: "Approved business claim" },
+    { text: "24/7 emergency service", approved: true, evidenceNote: "Approved business claim" },
+    { text: "Free quotes", approved: true, evidenceNote: "Approved business claim" },
+    { text: "No hidden fees", approved: true, evidenceNote: "Approved business claim" },
+    { text: "Honest recommendations", approved: true, evidenceNote: "Approved business claim" },
+  ],
+};
+
+export const navigation = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/projects", label: "Projects" },
+  { href: "/reviews", label: "Reviews" },
+  { href: "/service-areas", label: "Service Areas" },
+  { href: "/about", label: "About" },
+];

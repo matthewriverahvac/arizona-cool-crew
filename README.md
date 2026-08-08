@@ -1,73 +1,46 @@
-# Welcome to your Lovable project
+# Cool Fox Heating & Cooling
 
-## Project info
+Statically generated multi-page Next.js website for Cool Fox Heating & Cooling LLC.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Local setup
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Use `npm run check` before deployment. It runs the published-copy scan, TypeScript, lint, tests, and production build.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Production email
 
-**Use GitHub Codespaces**
+The quote endpoint routes every internal lead to `Service@cool-fox.com` and sends an acknowledgement when the customer supplies an email address. Production requires:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `RESEND_API_KEY`
+- `LEAD_FROM_EMAIL=Website Leads <quotes@notify.cool-fox.com>`
+- `SITE_URL=https://www.cool-fox.com`
 
-## What technologies are used for this project?
+Verify `notify.cool-fox.com` in Resend by adding its SPF and DKIM records. Keep the existing root Microsoft mail records in place. The endpoint fails closed when configuration is missing.
 
-This project is built with:
+## Photo intake
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Preserve original files outside the optimized web directory. Use this naming pattern:
 
-## How can I deploy this project?
+```text
+project-slug__portfolio__01.jpg
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+For each approved project:
 
-## Can I connect a custom domain to my Lovable project?
+1. Create responsive AVIF or WebP versions in `public/images/projects/<project-slug>/`.
+2. Add one typed manifest to `lib/projects.ts` with dimensions, meaningful alt text, and story stages.
+3. Organize the photography around the real process, such as inspection, component work, controls, and final review.
+4. Mark the project featured only when it is approved for homepage use.
 
-Yes, you can!
+That single manifest powers the project detail route and can feed matching service and city galleries.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Content controls
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Business details live in `lib/site.ts`. Services, locations, projects, reviews, and FAQs each have one typed source file in `lib/`. Reviews remain hidden until an approved quote and verified source URL are supplied.
+
+Before production, the business owner should confirm the legal name and ROC number against the active Arizona Registrar of Contractors record.
