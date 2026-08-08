@@ -7,6 +7,6 @@ export function pageMetadata(title: string, description: string, path: string): 
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: siteConfig.displayName, images: [{ url: "/og.png", width: 1200, height: 630 }] },
+    openGraph: { title, description, url, siteName: siteConfig.displayName, images: [{ url: "/og.png?v=20260808", width: 1200, height: 630 }] },
   };
 }

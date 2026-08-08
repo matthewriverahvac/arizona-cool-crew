@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     title: "Arizona Comfort. Honest Service.",
     description: "Family owned heating and cooling for the Valley and Northern Arizona.",
     url: siteConfig.baseUrl,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Cool Fox Heating and Cooling in Arizona" }],
+    images: [{ url: "/og.png?v=20260808", width: 1200, height: 630, alt: "Cool Fox Heating and Cooling in Arizona" }],
   },
-  twitter: { card: "summary_large_image", images: ["/og.png"] },
+  twitter: { card: "summary_large_image", images: ["/og.png?v=20260808"] },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#070707" };
