@@ -10,7 +10,7 @@ export default function PrivacyPage() {
     <>
       <PageHero eyebrow="Legal" title="Privacy policy" text="How information submitted through this website is collected and used." />
       <section className="section shell legal-content">
-        <p>Last updated August 9, 2026.</p>
+        <p>Last updated August 8, 2026.</p>
         <h2>Information we collect</h2>
         <p>When you request service, we may collect your name, phone number, email address, property type, city or ZIP code, requested service, and message.</p>
         <h2>How we use information</h2>
