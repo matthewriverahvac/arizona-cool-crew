@@ -41,7 +41,7 @@ export function ContactForm({ initialService = "" }: { initialService?: string }
       const result = await response.json();
       if (response.ok && result.ok) {
         setStatus("success");
-        setMessage("Your request was sent to the Cool Fox service team, and a confirmation was emailed to you.");
+        setMessage("Your request was sent to the Cool Fox service team. A confirmation is on its way to your email.");
         form.reset();
         return;
       }

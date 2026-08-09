@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from "node:crypto";
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { escapeHtml, quoteSchema } from "@/lib/quote";
 import { siteConfig } from "@/lib/site";
@@ -24,6 +24,10 @@ function submissionKey(values: string[]) {
 
 function failure(code: "VALIDATION_ERROR" | "SPAM_REJECTED" | "DELIVERY_FAILED", status: number, fieldErrors?: Record<string, string[] | undefined>) {
   return NextResponse.json({ ok: false, code, ...(fieldErrors ? { fieldErrors } : {}) }, { status });
+}
+
+function emailShell(logoUrl: string, content: string) {
+  return `<!doctype html><html><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"></head><body style="margin:0;padding:24px 10px;background-color:#e9e4dc;color:#2d2922"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#f7f5f0" style="width:100%;max-width:640px;margin:0 auto;background-color:#f7f5f0;border-top:5px solid #b88923;border-collapse:separate"><tr><td align="center" bgcolor="#000000" style="padding:24px;background-color:#000000"><img src="${logoUrl}" width="280" alt="Cool Fox Heating & Cooling" style="display:block;width:100%;max-width:280px;height:auto;margin:0 auto"></td></tr><tr><td bgcolor="#f7f5f0" style="padding:32px;background-color:#f7f5f0;color:#2d2922;font-family:Arial,sans-serif;line-height:1.55">${content}</td></tr></table></body></html>`;
 }
 
 export async function POST(request: NextRequest) {
@@ -66,20 +70,25 @@ export async function POST(request: NextRequest) {
     Message: escapeHtml(lead.message).replace(/\n/g, "<br>"),
   };
   const text = `New Cool Fox service request\n\nSubmission: ${id}\nName: ${lead.name}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nService: ${lead.service}\nProperty: ${lead.propertyType}\nCity or ZIP: ${lead.cityZip}\n\nMessage:\n${lead.message}`;
-  const emailLogo = `<div style="text-align:center;padding:4px 0 24px"><img src="${emailLogoUrl}" width="260" alt="Cool Fox Heating & Cooling" style="display:block;width:100%;max-width:260px;height:auto;margin:0 auto" /></div>`;
-  const html = `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;background:#0b0b0b;color:#f6f0e5;padding:32px;border-top:5px solid #d7a53a">${emailLogo}<h1 style="font-family:Georgia,serif;color:#f0c568">New service request</h1><p style="color:#bdb5a7">Submission ${id}</p><table style="width:100%;border-collapse:collapse">${Object.entries(fields).map(([label, value]) => `<tr><th style="text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #393329;color:#f0c568">${label}</th><td style="padding:10px;border-bottom:1px solid #393329">${value}</td></tr>`).join("")}</table></div>`;
+  const html = emailShell(emailLogoUrl, `<h1 style="margin:0 0 16px;font-family:Georgia,serif;color:#765700">New service request</h1><p style="color:#6d665b">Submission ${id}</p><table role="presentation" style="width:100%;border-collapse:collapse;color:#2d2922">${Object.entries(fields).map(([label, value]) => `<tr><th style="text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #d9d0c1;color:#765700">${label}</th><td style="padding:10px;border-bottom:1px solid #d9d0c1;color:#2d2922">${value}</td></tr>`).join("")}</table>`);
 
   try {
     const resend = new Resend(apiKey);
-    const acknowledgementHtml = `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;background:#0b0b0b;color:#f6f0e5;padding:32px;border-top:5px solid #d7a53a">${emailLogo}<h1 style="font-family:Georgia,serif;color:#f0c568">We received your request.</h1><p>Hi ${escapeHtml(lead.name)},</p><p>Thank you for contacting Cool Fox Heating & Cooling. Your request is now with our service team, and someone will follow up using the contact information you provided.</p><p>For urgent help, call <a style="color:#f0c568" href="tel:+16238891281">${siteConfig.phone}</a>.</p><p><a style="color:#f0c568" href="${siteUrl}/services">Explore Cool Fox services</a></p><p style="margin-top:28px;padding-top:18px;border-top:1px solid #393329;color:#bdb5a7;font-size:13px">This email confirms a service request submitted through <a style="color:#f0c568" href="${siteUrl}">cool-fox.com</a>. Read our <a style="color:#f0c568" href="${siteUrl}/privacy">privacy policy</a>.</p></div>`;
+    const acknowledgementHtml = emailShell(emailLogoUrl, `<h1 style="margin:0 0 18px;font-family:Georgia,serif;color:#765700">We received your request.</h1><p>Hi ${escapeHtml(lead.name)},</p><p>Thank you for contacting Cool Fox Heating & Cooling. Your request is now with our service team, and someone will follow up using the contact information you provided.</p><p>For urgent help, call <a style="color:#765700" href="tel:+16238891281">${siteConfig.phone}</a>.</p><p><a style="color:#765700" href="${siteUrl}/services">Explore Cool Fox services</a></p><p style="margin-top:28px;padding-top:18px;border-top:1px solid #d9d0c1;color:#6d665b;font-size:13px">This email confirms a service request submitted through <a style="color:#765700" href="${siteUrl}">cool-fox.com</a>. Read our <a style="color:#765700" href="${siteUrl}/privacy">privacy policy</a>.</p>`);
     const acknowledgementText = `Hi ${lead.name},\n\nThank you for contacting Cool Fox Heating & Cooling. Your request is now with our service team, and someone will follow up using the contact information you provided.\n\nFor urgent help, call ${siteConfig.phone}.\n\nExplore Cool Fox services: ${siteUrl}/services\nPrivacy policy: ${siteUrl}/privacy`;
-    const delivery = await resend.batch.send([
-      { from, to: [to], replyTo: lead.email, subject: `Website lead: ${lead.service} in ${lead.cityZip}`, html, text },
-      { from, to: [lead.email], subject: "Cool Fox received your service request", html: acknowledgementHtml, text: acknowledgementText },
-    ], { batchValidation: "strict" });
+    const delivery = await resend.emails.send({ from, to: [to], replyTo: lead.email, subject: `Website lead: ${lead.service} in ${lead.cityZip}`, html, text });
     if (delivery.error) throw new Error(`ProviderError:${delivery.error.name}`);
-    const providerResult = delivery.data?.data.map((email) => email.id).join(",") ?? "accepted";
-    console.info("Quote and acknowledgement delivered", { id, providerResult, timestamp: new Date().toISOString() });
+    const providerResult = delivery.data?.id ?? "accepted";
+    console.info("Quote delivered", { id, providerResult, timestamp: new Date().toISOString() });
+    after(async () => {
+      try {
+        const acknowledgement = await resend.emails.send({ from, to: [lead.email], subject: "Cool Fox received your service request", html: acknowledgementHtml, text: acknowledgementText });
+        if (acknowledgement.error) throw new Error(`ProviderError:${acknowledgement.error.name}`);
+        console.info("Quote acknowledgement delivered", { id, providerResult: acknowledgement.data?.id ?? "accepted", timestamp: new Date().toISOString() });
+      } catch (error) {
+        console.error("Quote acknowledgement failed", { id, timestamp: new Date().toISOString(), errorClass: error instanceof Error ? error.name : "UnknownError" });
+      }
+    });
     return NextResponse.json({ ok: true, id });
   } catch (error) {
     recentSubmissions.delete(duplicateKey);
