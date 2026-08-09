@@ -2,12 +2,13 @@
 
 import { FormEvent, useState } from "react";
 import { CheckCircle2, LoaderCircle } from "lucide-react";
+import { requestOptions } from "@/lib/pricing";
 import { services } from "@/lib/services";
 import { siteConfig } from "@/lib/site";
 
 type FieldErrors = Record<string, string[]>;
 
-export function ContactForm({ initialService = "" }: { initialService?: string }) {
+export function ContactForm({ initialService = "", initialOption = "" }: { initialService?: string; initialOption?: string }) {
   const [startedAt, setStartedAt] = useState(0);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -25,6 +26,7 @@ export function ContactForm({ initialService = "" }: { initialService?: string }
       phone: data.get("phone"),
       email: data.get("email"),
       service: data.get("service"),
+      option: data.get("option"),
       propertyType: data.get("propertyType"),
       cityZip: data.get("cityZip"),
       message: data.get("message"),
@@ -84,6 +86,13 @@ export function ContactForm({ initialService = "" }: { initialService?: string }
             {services.map((service) => <option value={service.slug} key={service.slug}>{service.shortTitle}</option>)}
           </select>
           {errorFor("service") && <small id="service-error">{errorFor("service")}</small>}
+        </label>
+        <label className="full-field"><span className="field-label">Plan or offer <span className="optional">Optional</span></span>
+          <select name="option" defaultValue={initialOption} aria-describedby={errorFor("option") ? "option-error" : undefined}>
+            <option value="">No specific plan or offer</option>
+            {requestOptions.map((option) => <option value={option.slug} key={option.slug}>{option.label}</option>)}
+          </select>
+          {errorFor("option") && <small id="option-error">{errorFor("option")}</small>}
         </label>
         <fieldset>
           <legend>Property type <span aria-hidden="true">*</span></legend>

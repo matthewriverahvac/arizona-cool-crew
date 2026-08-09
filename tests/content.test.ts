@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { locations } from "@/lib/locations";
+import { pricingOptions, requestOptions } from "@/lib/pricing";
 import { projects } from "@/lib/projects";
 import { services } from "@/lib/services";
 import { siteConfig } from "@/lib/site";
@@ -8,6 +9,15 @@ describe("typed site content", () => {
   it("keeps service and location slugs unique", () => {
     expect(new Set(services.map((item) => item.slug)).size).toBe(services.length);
     expect(new Set(locations.map((item) => item.slug)).size).toBe(locations.length);
+    expect(new Set(pricingOptions.map((item) => item.slug)).size).toBe(pricingOptions.length);
+  });
+
+  it("connects every pricing option to a service and contact selection", () => {
+    expect(requestOptions).toHaveLength(pricingOptions.length);
+    for (const option of pricingOptions) {
+      expect(services.some((service) => service.slug === option.serviceSlug)).toBe(true);
+      expect(requestOptions.some((requestOption) => requestOption.slug === option.slug)).toBe(true);
+    }
   });
 
   it("provides complete service page content", () => {

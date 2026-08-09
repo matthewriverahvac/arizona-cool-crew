@@ -5,7 +5,7 @@ export const generalFaqs: Faq[] = [
   { question: "How quickly can Cool Fox arrive?", answer: "Same-day appointments are available according to location and technician capacity. Call for the most accurate arrival window." },
   { question: "Is emergency service available?", answer: "Yes. Cool Fox provides 24/7 emergency HVAC service. Calling is the fastest way to reach the team for urgent help." },
   { question: "Should I repair or replace my system?", answer: "Consider equipment age, repair cost, reliability, comfort, efficiency, and parts availability. Cool Fox explains both options without pressure." },
-  { question: "How long does an Arizona AC system normally last?", answer: "Many systems last about 10 to 15 years, but installation quality, maintenance, usage, and outdoor exposure can shorten or extend that range." },
+  { question: "How long does an Arizona AC system normally last?", answer: "Expected 10+ years of use is a practical Arizona planning point. Installation quality, maintenance, daily runtime, and sun exposure can all affect actual service life." },
   { question: "How often should an Arizona HVAC system be serviced?", answer: "Most systems benefit from service twice a year, once before peak cooling and once before heating season." },
   { question: "How often should filters be replaced?", answer: "Many homes need a new filter every one to three months. Pets, dust, allergies, filter type, and system use can change the interval." },
   { question: "Why is my system short-cycling?", answer: "Restricted airflow, thermostat placement, electrical problems, frozen coils, or incorrect sizing can cause frequent starts and stops. A technician should diagnose the actual cause." },

@@ -98,7 +98,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </section>
         ))}
       </div>
-      <section className="final-cta"><div className="shell final-cta-inner"><div><p className="eyebrow">Need Care Like This?</p><h2>Let Cool Fox take a closer look.</h2><p>Request service for your home or business and tell us what your system is doing.</p></div><div className="button-row"><Link className="button button-gold" href={`/contact?service=${project.service}`}>Request Similar Service <ArrowRight aria-hidden="true" size={18} /></Link>{service && <Link className="button button-outline" href={`/services/${service.slug}`}>Explore {service.shortTitle}</Link>}</div></div></section>
+      <section className="final-cta"><div className="shell final-cta-inner"><div><p className="eyebrow">Already Have a Written Estimate?</p><h2>Let Cool Fox take a closer look.</h2><p>Get a free second opinion on the proposed scope, equipment, and pricing before you approve major repair or replacement work.</p></div><div className="button-row"><Link className="button button-gold" href="/contact?service=ac-installation&option=free-second-opinion">Request Free Second Opinion <ArrowRight aria-hidden="true" size={18} /></Link>{service && <Link className="button button-outline" href={`/services/${service.slug}`}>Explore {service.shortTitle}</Link>}</div></div></section>
     </>
   );
 }

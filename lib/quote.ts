@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { requestOptions } from "./pricing";
 
 const cleanText = (max: number) => z.string().trim().min(1).max(max);
 
@@ -7,6 +8,7 @@ export const quoteSchema = z.object({
   phone: z.string().trim().min(7).max(30).regex(/^[0-9+().\-\s]+$/, "Enter a valid phone number"),
   email: z.email("Enter a valid email address").trim().max(254),
   service: cleanText(80),
+  option: z.string().trim().max(80).optional().default("").refine((value) => value === "" || requestOptions.some((option) => option.slug === value), "Select a valid plan or offer"),
   propertyType: z.enum(["residential", "commercial"]),
   cityZip: cleanText(100),
   message: cleanText(2000),

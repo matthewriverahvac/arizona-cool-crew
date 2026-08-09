@@ -36,9 +36,23 @@ export const services: ServicePage[] = [
     symptoms: ["System is near the end of its useful life", "Frequent or expensive repairs", "Persistent hot and cold rooms", "High cooling costs", "Major refrigerant or compressor failure"],
     inclusions: ["Home and comfort assessment", "Equipment sizing review", "Clear installation proposal", "Removal of replaced equipment", "Startup, testing, and owner walkthrough"],
     process: standardProcess,
+    details: [
+      {
+        eyebrow: "Arizona Planning",
+        title: "Expected 10+ years of use",
+        text: "Arizona heat and direct sun make equipment work hard. A well-selected and properly installed system should be planned around dependable service for 10 or more years, while actual life depends on maintenance, runtime, placement, and manufacturer guidance.",
+        items: ["Correct equipment sizing", "Careful installation and startup", "Routine maintenance", "Realistic planning for Arizona conditions"],
+      },
+      {
+        eyebrow: "Already Have an Estimate?",
+        title: "Get a free second opinion",
+        text: "Cool Fox will review a written estimate from a licensed HVAC contractor so you can understand the scope, equipment, pricing, and whether repair may still be practical.",
+        items: ["Written estimate review", "Repair viability check", "Clear explanation of the proposed work", "No pressure to proceed"],
+      },
+    ],
     faqs: [
       { question: "What is included in an installation quote?", answer: "The proposal identifies the recommended system, installation scope, included materials, and total approved price. Any optional work is presented separately." },
-      { question: "How long does an Arizona AC system normally last?", answer: "Many systems last about 10 to 15 years in Arizona, but maintenance, installation quality, usage, and exposure can change that range." },
+      { question: "How long does an Arizona AC system normally last?", answer: "Expected 10+ years of use is a practical Arizona planning point. Maintenance, installation quality, daily runtime, and sun exposure can all affect the actual service life." },
       { question: "How is a new system sized?", answer: "Square footage alone is not enough. Construction, insulation, windows, orientation, ductwork, and comfort concerns should all inform equipment sizing." },
       { question: "Can I get a second opinion?", answer: "Yes. Cool Fox can review another diagnosis or replacement recommendation and explain the available options." },
     ],
@@ -54,6 +68,23 @@ export const services: ServicePage[] = [
     symptoms: ["One room stays hotter than the rest", "A garage, workshop, or home office needs cooling", "A new addition has no practical duct connection", "The central system works but cannot balance a problem area", "You want room-by-room temperature control"],
     inclusions: ["Hot-spot and room load assessment", "Indoor and outdoor equipment placement plan", "Electrical and condensate routing review", "Clear equipment and installation proposal", "Startup, testing, and controls walkthrough"],
     process: standardProcess,
+    details: [
+      {
+        eyebrow: "Targeted Comfort",
+        title: "A practical answer for Arizona hot spots",
+        text: "A mini split can be a more focused and often less expensive solution when one space needs help but the main HVAC system is still dependable.",
+        items: ["Garages and workshops", "Arizona rooms and enclosed patios", "Hot bedrooms and home offices", "Additions and spaces without practical duct access"],
+      },
+    ],
+    gallery: {
+      title: "Real Cool Fox mini split installations",
+      text: "These completed projects show the indoor equipment, outdoor unit, and finished line routing used to bring targeted comfort to the spaces that need it.",
+      images: [
+        { src: "/images/services/mini-split/mini-split-installation__portfolio__01.webp", alt: "Finished wall-mounted mini split indoor unit installed above a television in an Arizona room", width: 1200, height: 1600 },
+        { src: "/images/services/mini-split/mini-split-installation__portfolio__02.webp", alt: "Wall-mounted mini split serving a garage utility area with organized filtration equipment below", width: 1200, height: 1600 },
+        { src: "/images/services/mini-split/mini-split-installation__portfolio__03.webp", alt: "Finished outdoor mini split condenser with neat electrical and covered refrigerant line routing", width: 1200, height: 1600 },
+      ],
+    },
     faqs: [
       { question: "What spaces work well with a mini split?", answer: "Mini splits are often a strong fit for hot bedrooms, garages, workshops, home offices, additions, guest spaces, and rooms that are difficult to reach with existing ductwork." },
       { question: "Can a mini split cost less than replacing central AC?", answer: "Often, yes, when the comfort problem is limited to one or two spaces and the central system is still dependable. The total depends on capacity, electrical work, equipment location, and the number of indoor units." },
@@ -73,6 +104,14 @@ export const services: ServicePage[] = [
     symptoms: ["System has not been serviced recently", "Cooling costs are increasing", "Airflow has declined", "Dust builds up quickly", "You want fewer surprise breakdowns"],
     inclusions: ["Heating and cooling inspection", "Electrical connection checks", "Coil and drain evaluation", "Filter and airflow review", "Written findings and recommendations"],
     process: standardProcess,
+    details: [
+      {
+        eyebrow: "Compare Plans",
+        title: "Three levels of annual protection",
+        text: "Choose Fox Basic, Fox Plus, or Fox Elite based on the service frequency and priority benefits that fit your home. Multi unit commercial properties receive a custom estimate.",
+        items: ["Fox Basic, $119 annually", "Fox Plus, $229 annually", "Fox Elite, $339 annually", "Custom estimates for multi unit commercial properties"],
+      },
+    ],
     faqs: [
       { question: "How often should an Arizona HVAC system be serviced?", answer: "Most systems benefit from professional service twice a year, once before peak cooling and once before heating season." },
       { question: "What does a maintenance visit include?", answer: "The technician inspects operation, electrical components, temperatures, airflow, drainage, and visible wear, then explains any findings." },
@@ -127,6 +166,20 @@ export const services: ServicePage[] = [
     symptoms: ["Customer or staff areas are uncomfortable", "Rooftop equipment has stopped", "Energy use is rising", "Recurring service interruptions", "A replacement or maintenance plan is needed"],
     inclusions: ["Commercial system diagnosis", "Repair and replacement options", "Rooftop unit service", "Preventive maintenance planning", "Clear communication with the property contact"],
     process: standardProcess,
+    details: [
+      {
+        eyebrow: "Property Types",
+        title: "Commercial service built around the site",
+        text: "Cool Fox supports many commercial property types and can confirm equipment coverage, access needs, and scheduling before the visit.",
+        items: ["Retail centers and restaurants", "Warehouses and light industrial spaces", "Offices and churches", "Multi-tenant and multi unit properties", "Other light commercial properties by equipment review"],
+      },
+      {
+        eyebrow: "Preventive Inspection",
+        title: "Commercial inspections starting at $79",
+        text: "The inspection focuses on reliability, comfort, and problems that can lead to avoidable downtime. Final pricing depends on equipment quantity, access, and scope.",
+        items: ["Airflow and static pressure evaluation", "Electrical component and voltage testing", "Refrigerant charge and leak inspection", "Thermostat and control verification", "Drainage, condensate, and filter condition assessment"],
+      },
+    ],
     faqs: [
       { question: "Does Cool Fox handle commercial systems?", answer: "Yes. Cool Fox provides service for common light commercial HVAC systems and can confirm equipment coverage when you schedule." },
       { question: "Can service be coordinated with a property manager?", answer: "Yes. Provide the site contact, access details, and approval process when requesting service." },
@@ -137,6 +190,43 @@ export const services: ServicePage[] = [
     icon: "building",
   },
   {
+    slug: "duct-cleaning",
+    title: "Professional Air Duct Cleaning",
+    shortTitle: "Duct Cleaning",
+    summary: "A careful duct cleaning process for dust, debris, odors, and airflow concerns.",
+    description: "Cool Fox inspects the duct system, explains what is present, and completes approved cleaning with care for the home, the HVAC equipment, and the finished work area.",
+    symptoms: ["Visible dust at supply registers", "Dust returns quickly after cleaning", "Musty or stale odors", "Debris is visible inside accessible ducts", "Airflow feels weak in multiple rooms", "A renovation introduced heavy dust"],
+    inclusions: ["Duct and register inspection", "Clear cleaning scope and estimate", "Professional duct cleaning equipment", "Protection for nearby surfaces and work areas", "Post-cleaning system check", "Final walkthrough and result review"],
+    process: [
+      { title: "We inspect the system", text: "We look for dust, debris, odors, and airflow concerns before recommending work." },
+      { title: "You review the plan", text: "We explain the cleaning scope, answer questions, and wait for your approval." },
+      { title: "We clean with care", text: "The team cleans the approved ductwork while protecting the home and equipment." },
+      { title: "We verify the result", text: "We check the completed work, clean the work area, and review the result with you." },
+    ],
+    details: [
+      {
+        eyebrow: "The Cleaning Process",
+        title: "What happens from arrival to final review",
+        text: "The full process is organized so you understand what we found, what was approved, and what was completed.",
+        items: ["1. Arrive ready to help", "2. Inspect the duct system", "3. Explain findings and recommendations", "4. Receive your approval", "5. Clean the approved ducts", "6. Check the work and clean up", "7. Review airflow and comfort", "8. Walk through the finished result"],
+      },
+      {
+        eyebrow: "Why Homeowners Call",
+        title: "Cleaner ductwork can support the whole system",
+        text: "The right scope depends on the condition of the ducts and the source of the concern. Cool Fox checks first so the recommendation fits the home.",
+        items: ["Reduce accumulated dust and debris", "Address some odor and airflow concerns", "Support clean HVAC equipment", "Document the completed work when photos are available"],
+      },
+    ],
+    faqs: [
+      { question: "How do I know whether my ducts need cleaning?", answer: "Visible debris, repeated dust at registers, renovation dust, musty odors, or confirmed contamination can justify an inspection. We look at the system before recommending cleaning." },
+      { question: "Will duct cleaning fix every dust problem?", answer: "No. Dust can also enter through air leaks, doors, windows, returns, and daily activity. Duct cleaning is one possible part of a broader airflow and filtration plan." },
+      { question: "Do you inspect before cleaning?", answer: "Yes. Cool Fox reviews the accessible duct system and explains the recommended scope before approved work begins." },
+      { question: "Can you show the completed work?", answer: "When access and conditions allow, the team can review the finished areas and available photos with you during the final walkthrough." },
+    ],
+    relatedServices: ["indoor-air-quality", "maintenance-plans", "residential-hvac"],
+    icon: "air",
+  },
+  {
     slug: "indoor-air-quality",
     title: "Indoor Air Quality Solutions",
     shortTitle: "Indoor Air Quality",
@@ -145,6 +235,20 @@ export const services: ServicePage[] = [
     symptoms: ["Excess dust", "Odors or stale air", "Allergy concerns", "Humidity discomfort", "Poor airflow", "Frequent filter loading"],
     inclusions: ["Filter and airflow assessment", "Duct and equipment review", "Filtration options", "Air cleaning and comfort recommendations", "Installation and performance check"],
     process: standardProcess,
+    details: [
+      {
+        eyebrow: "Air Purification",
+        title: "iWave-R options for compatible systems",
+        text: "An iWave-R air purifier is designed to work inside compatible HVAC equipment and may help reduce certain airborne particles and odors as air circulates through the system.",
+        items: ["Self-cleaning needlepoint bipolar ionization", "No replacement bulbs or filters in the device", "Quiet operation inside compatible HVAC equipment", "System suitability confirmed before installation"],
+      },
+      {
+        eyebrow: "UV Light Options",
+        title: "Coil and in-duct air treatment",
+        text: "UV equipment can be positioned for coil surface treatment or in-duct air treatment. Cool Fox checks the system layout, materials, service access, and product instructions before recommending an option.",
+        items: ["Coil-focused UV light for biological growth control on treated surfaces", "In-duct UV light designed to treat moving air", "Placement based on system design and manufacturer requirements", "Clear maintenance and bulb replacement guidance"],
+      },
+    ],
     faqs: [
       { question: "What indoor air quality options help with Arizona dust?", answer: "A properly fitted filter, sealed return leaks, clean equipment, and appropriate whole-home filtration can all help. The best option depends on your system and goals." },
       { question: "Will a higher rated filter always be better?", answer: "Not always. A filter that is too restrictive can reduce airflow. The system and filter cabinet should be evaluated before changing filter type." },

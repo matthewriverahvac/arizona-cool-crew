@@ -34,9 +34,33 @@ export type ServicePage = {
   symptoms: string[];
   inclusions: string[];
   process: { title: string; text: string }[];
+  details?: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    items: string[];
+  }[];
+  gallery?: {
+    title: string;
+    text: string;
+    images: ProjectImage[];
+  };
   faqs: Faq[];
   relatedServices: string[];
   icon: "snowflake" | "unit" | "wrench" | "alert" | "home" | "building" | "air" | "flame";
+};
+
+export type PricingOption = {
+  slug: string;
+  name: string;
+  subtitle: string;
+  price: string;
+  priceNote: string;
+  category: "second-opinion" | "maintenance" | "commercial" | "consultation";
+  serviceSlug: string;
+  features: string[];
+  finePrint?: string[];
+  featured?: boolean;
 };
 
 export type LocationPage = {
