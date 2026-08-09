@@ -52,7 +52,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       </section>
       <div id="project-story">
         {project.stages.map((stage, stageIndex) => (
-          <section className={`section story-stage${stageIndex % 2 ? " section-contrast" : ""}`} key={stage.title}>
+          <section id={`stage-${stageIndex + 1}`} className={`section story-stage${stageIndex % 2 ? " section-contrast" : ""}`} key={stage.title}>
             <div className="shell story-stage-layout">
               <div className="story-stage-copy">
                 <p className="eyebrow">{stage.eyebrow}</p>
@@ -60,13 +60,40 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                 <p>{stage.description}</p>
                 <span>{String(stageIndex + 1).padStart(2, "0")}</span>
               </div>
-              <div className={`story-photo-grid story-photo-grid-${Math.min(stage.images.length, 4)}`}>
-                {stage.images.map((image, imageIndex) => (
-                  <figure className={imageIndex === 0 ? "story-photo-primary" : ""} key={image.src}>
-                    <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 700px) 100vw, (max-width: 1050px) 50vw, 34vw" />
-                  </figure>
-                ))}
-              </div>
+              {stage.comparisons ? (
+                <div className="story-comparison-list">
+                  {stage.comparisons.map((comparison) => (
+                    <article className="story-comparison-group" key={comparison.title}>
+                      <div className="story-comparison-heading">
+                        <h3>{comparison.title}</h3>
+                        <p>{comparison.description}</p>
+                      </div>
+                      <div className="story-comparison-columns">
+                        <div className="story-comparison-side">
+                          <p>Before</p>
+                          <div className="story-comparison-photos">
+                            {comparison.before.map((image) => <figure key={image.src}><Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 700px) 100vw, 28vw" /></figure>)}
+                          </div>
+                        </div>
+                        <div className="story-comparison-side">
+                          <p>After</p>
+                          <div className="story-comparison-photos">
+                            {comparison.after.map((image) => <figure key={image.src}><Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 700px) 100vw, 28vw" /></figure>)}
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className={`story-photo-grid story-photo-grid-${Math.min(stage.images.length, 4)}`}>
+                  {stage.images.map((image, imageIndex) => (
+                    <figure className={imageIndex === 0 ? "story-photo-primary" : ""} key={image.src}>
+                      <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 700px) 100vw, (max-width: 1050px) 50vw, 34vw" />
+                    </figure>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         ))}

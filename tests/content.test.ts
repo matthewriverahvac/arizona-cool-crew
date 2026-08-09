@@ -24,13 +24,17 @@ describe("typed site content", () => {
     expect(siteConfig.phoneHref).toBe("tel:+16238891281");
   });
 
-  it("publishes complete project photo stories without forced comparison fields", () => {
+  it("publishes complete project photo stories and valid comparison groups", () => {
     expect(projects.length).toBeGreaterThan(0);
     for (const project of projects) {
       expect(project.gallery.length).toBeGreaterThanOrEqual(8);
       expect(project.stages.length).toBeGreaterThanOrEqual(3);
       expect(project.stages.flatMap((stage) => stage.images)).toHaveLength(project.gallery.length);
       expect(project.gallery.every((image) => image.alt.length > 20)).toBe(true);
+      for (const comparison of project.stages.flatMap((stage) => stage.comparisons ?? [])) {
+        expect(comparison.before.length).toBeGreaterThan(0);
+        expect(comparison.after.length).toBeGreaterThan(0);
+      }
     }
   });
 });

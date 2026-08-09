@@ -21,12 +21,45 @@ const rooftopImages = [
   projectImage(7, "Thermostat wall plate and wiring prepared for the control connection", 1200, 1600),
   projectImage(8, "Electronic HVAC control board and organized field wiring inside the unit", 1200, 1600),
   projectImage(9, "Digital thermostat installed and powered on inside the property", 1200, 1600),
-  projectImage(10, "Front view of the rooftop packaged HVAC unit and surrounding work area", 1200, 1600),
-  projectImage(11, "Rooftop packaged unit supported above the tile roof with clean line routing", 1200, 1600),
-  projectImage(12, "Rear angle of the rooftop HVAC unit showing service labels and roof access", 1200, 1600),
-  projectImage(13, "Side view of the rooftop unit and sheet metal transition connection", 1200, 1600),
-  projectImage(14, "Wide rooftop view showing the packaged unit, duct transition, and completed work area", 1200, 1600),
-  projectImage(15, "Final property view of the rooftop packaged HVAC system in place", 1200, 1600),
+];
+
+function comparisonImage(file: string, alt: string, width = 1200, height = 1600): ProjectImage {
+  return { src: `${imageBase}/${file}`, alt, width, height };
+}
+
+const rooftopComparisonA = {
+  title: "Rooftop system replacement",
+  description: "Aging rooftop equipment and its existing support layout were replaced with a clean installation, carefully routed connections, and clear service access.",
+  before: [
+    comparisonImage("rooftop-package-unit-care-a__before__01.webp", "Aging rooftop packaged HVAC unit before replacement, viewed from the side"),
+    comparisonImage("rooftop-package-unit-care-a__before__02.webp", "Original rooftop HVAC support frame and line routing before replacement"),
+    comparisonImage("rooftop-package-unit-care-a__before__03.webp", "Original rooftop duct transition and equipment connection before replacement"),
+  ],
+  after: [
+    comparisonImage("rooftop-package-unit-care-a__after__01.webp", "New rooftop packaged HVAC system installed on a secure support frame"),
+    comparisonImage("rooftop-package-unit-care-a__after__02.webp", "Rear view of the completed rooftop HVAC installation and organized connections"),
+    comparisonImage("rooftop-package-unit-care-a__after__03.webp", "Completed rooftop HVAC installation with new duct transition and clean roof work"),
+  ],
+};
+
+const rooftopComparisonB = {
+  title: "Complete equipment upgrade",
+  description: "The original packaged unit and worn support were replaced with new equipment, a secure rooftop stand, updated connections, and a clean finished work area.",
+  before: [
+    comparisonImage("rooftop-package-unit-care-b__before__01.webp", "Original rooftop packaged HVAC system before replacement"),
+    comparisonImage("rooftop-package-unit-care-b__before__02.webp", "Front view of the original weathered rooftop HVAC unit before replacement"),
+  ],
+  after: [
+    comparisonImage("rooftop-package-unit-care-b__after__01.webp", "New AC Pro rooftop packaged HVAC system after installation"),
+    comparisonImage("rooftop-package-unit-care-b__after__02.webp", "Completed rooftop equipment installation viewed from the rear"),
+  ],
+};
+
+const comparisonImages = [
+  ...rooftopComparisonA.after,
+  ...rooftopComparisonB.after,
+  ...rooftopComparisonA.before,
+  ...rooftopComparisonB.before,
 ];
 
 export const projects: Project[] = [
@@ -37,8 +70,8 @@ export const projects: Project[] = [
     service: "residential-hvac",
     summary: "A complete photo story showing the care behind the inspection, internal component work, comfort controls, and final rooftop review.",
     introduction: "Good HVAC work is more than the finished equipment you can see from the ground. This project gallery follows the work up close, from understanding the existing system to checking internal components, connecting the controls, and reviewing the complete rooftop setup.",
-    cover: rooftopImages[14],
-    gallery: rooftopImages,
+    cover: rooftopComparisonA.after[0],
+    gallery: [...rooftopImages, ...comparisonImages],
     stages: [
       {
         eyebrow: "Step One",
@@ -60,9 +93,10 @@ export const projects: Project[] = [
       },
       {
         eyebrow: "Step Four",
-        title: "Review the complete rooftop setup",
-        description: "The final series steps back to show equipment placement, support, service access, line routing, duct transitions, and the surrounding work area from multiple angles.",
-        images: rooftopImages.slice(9),
+        title: "Compare the complete results",
+        description: "The final step brings the full job into view. Each real before and after set shows the equipment, support, connections, roof area, and finished installation from matching project groups.",
+        images: comparisonImages,
+        comparisons: [rooftopComparisonA, rooftopComparisonB],
       },
     ],
     equipmentDetails: "Rooftop packaged HVAC system",

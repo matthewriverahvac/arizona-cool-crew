@@ -19,7 +19,6 @@ export type SiteConfig = {
   baseUrl: string;
   googleReviewsUrl: string;
   googleReviewCountLabel: string;
-  googleRating: string;
   instagramUrl: string;
   facebookUrl: string;
   serviceAreas: string[];
@@ -58,6 +57,13 @@ export type ProjectImage = {
   height: number;
 };
 
+export type ProjectComparison = {
+  title: string;
+  description: string;
+  before: ProjectImage[];
+  after: ProjectImage[];
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -72,6 +78,7 @@ export type Project = {
     title: string;
     description: string;
     images: ProjectImage[];
+    comparisons?: ProjectComparison[];
   }[];
   equipmentDetails?: string;
   completedAt?: string;

@@ -9,8 +9,7 @@ export const siteConfig: SiteConfig = {
   rocNumber: "361981",
   baseUrl: "https://www.cool-fox.com",
   googleReviewsUrl: "https://share.google/64YlER5JA3zSkTeBu",
-  googleReviewCountLabel: "59 Google reviews",
-  googleRating: "5.0",
+  googleReviewCountLabel: "Google reviews",
   instagramUrl: "https://www.instagram.com/coolfoxhvac/",
   facebookUrl: "https://www.facebook.com/profile.php?id=61589587874118",
   serviceAreas: [

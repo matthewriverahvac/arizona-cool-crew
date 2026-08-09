@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata("Customer Reviews", "Read approve
 export default function ReviewsPage() {
   return (
     <>
-      <PageHero eyebrow="Customer Feedback" title="Real Reviews From Arizona Customers" text={`Cool Fox has a ${siteConfig.googleRating} star rating across ${siteConfig.googleReviewCountLabel.toLowerCase()} from customers who chose the team for heating and cooling service.`} primaryLabel="Open Google Reviews" primaryHref={siteConfig.googleReviewsUrl} />
+      <PageHero eyebrow="Customer Feedback" title="Real Reviews From Arizona Customers" text="Read current feedback from customers who chose Cool Fox for heating and cooling service." primaryLabel="Open Google Reviews" primaryHref={siteConfig.googleReviewsUrl} />
       <section className="section shell reviews-source-section">
         <div className="google-review-panel">
           <div className="google-review-icon"><MessageSquareQuote aria-hidden="true" /></div>

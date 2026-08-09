@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BadgeCheck, CalendarClock, Phone, ShieldCheck, UsersRound } from "lucide-react";
 import { FaqList } from "@/components/FaqList";
-import { BeforeAfterFeature } from "@/components/BeforeAfterFeature";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { generalFaqs } from "@/lib/faq";
@@ -13,8 +12,13 @@ import { siteConfig } from "@/lib/site";
 
 export default function HomePage() {
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];
-  const featuredProjectImages = featuredProject
-    ? [featuredProject.gallery[10], featuredProject.gallery[13], featuredProject.gallery[14], featuredProject.gallery[12]].filter(Boolean)
+  const featuredProjectPreviews = featuredProject
+    ? [
+        { image: featuredProject.gallery[14], label: "Project One Before" },
+        { image: featuredProject.gallery[9], label: "Project One After" },
+        { image: featuredProject.gallery[17], label: "Project Two Before" },
+        { image: featuredProject.gallery[12], label: "Project Two After" },
+      ].filter((preview) => Boolean(preview.image))
     : [];
   return (
     <>
@@ -50,27 +54,26 @@ export default function HomePage() {
       <section className="section section-contrast">
         <div className="shell split-section project-home-feature">
           <div>
-            <SectionHeading eyebrow="Featured Project Story" title="See the care behind every step" text="Follow a real rooftop project from close inspection and component work through controls and the final review." />
+            <SectionHeading eyebrow="Featured Project Story" title="See the care behind every replacement" text="Follow the full project process, then compare two real rooftop systems before and after the finished installation." />
             <ul className="check-list">
               <li><BadgeCheck aria-hidden="true" />Original customer project photography</li>
-              <li><BadgeCheck aria-hidden="true" />The complete process organized as a story</li>
-              <li><BadgeCheck aria-hidden="true" />Close details and final rooftop views</li>
+              <li><BadgeCheck aria-hidden="true" />Two real before and after rooftop comparisons</li>
+              <li><BadgeCheck aria-hidden="true" />Close installation details from start to finish</li>
             </ul>
             <Link className="button button-gold" href={featuredProject ? `/projects/${featuredProject.slug}` : "/projects"}>View Full Project Portfolio</Link>
           </div>
           {featuredProject && (
             <Link className="home-project-collage" href={`/projects/${featuredProject.slug}`} aria-label={`View ${featuredProject.title}`}>
-              {featuredProjectImages.map((image, index) => <Image className={index === 0 ? "collage-primary" : ""} src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 900px) 50vw, 28vw" key={image.src} />)}
-              <span>{featuredProject.gallery.length} project photos</span>
+              {featuredProjectPreviews.map(({ image, label }) => (
+                <figure key={image.src}>
+                  <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 900px) 50vw, 24vw" />
+                  <span className="collage-label">{label}</span>
+                </figure>
+              ))}
+              <span className="collage-count">{featuredProject.gallery.length} project photos</span>
             </Link>
           )}
         </div>
-      </section>
-
-      <section className="section shell comparison-section">
-        <SectionHeading eyebrow="Project Transformation" title="See the finished work in context" text="This rooftop package-unit installation shows the clean, careful result. The illustrative starting image gives the comparison a clear visual reference until the original before photo is added." align="center" />
-        <BeforeAfterFeature />
-        <div className="center-action"><Link className="button button-outline" href="/projects">View Full Project Portfolio</Link></div>
       </section>
 
       <section className="review-proof-strip">
