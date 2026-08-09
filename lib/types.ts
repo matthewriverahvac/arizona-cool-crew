@@ -19,6 +19,9 @@ export type SiteConfig = {
   baseUrl: string;
   googleReviewsUrl: string;
   googleReviewCountLabel: string;
+  googleRating: string;
+  instagramUrl: string;
+  facebookUrl: string;
   serviceAreas: string[];
   claims: BusinessClaim[];
 };
@@ -78,7 +81,7 @@ export type Project = {
 export type Review = {
   quote: string;
   displayName: string;
-  city: string;
+  city?: string;
   source: string;
   sourceUrl: string;
   rating: number;

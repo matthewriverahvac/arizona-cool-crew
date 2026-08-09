@@ -9,7 +9,10 @@ export const siteConfig: SiteConfig = {
   rocNumber: "361981",
   baseUrl: "https://www.cool-fox.com",
   googleReviewsUrl: "https://share.google/64YlER5JA3zSkTeBu",
-  googleReviewCountLabel: "50+ Google reviews",
+  googleReviewCountLabel: "59 Google reviews",
+  googleRating: "5.0",
+  instagramUrl: "https://www.instagram.com/coolfoxhvac/",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61589587874118",
   serviceAreas: [
     "Phoenix",
     "Glendale",
@@ -46,5 +49,6 @@ export const navigation = [
   { href: "/projects", label: "Projects" },
   { href: "/reviews", label: "Reviews" },
   { href: "/service-areas", label: "Service Areas" },
+  { href: "/contact", label: "Contact Us" },
   { href: "/about", label: "About" },
 ];

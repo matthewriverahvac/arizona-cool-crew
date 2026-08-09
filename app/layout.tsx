@@ -33,7 +33,7 @@ const businessSchema = {
   telephone: "+16238891281",
   email: siteConfig.email,
   image: `${siteConfig.baseUrl}/og.png`,
-  sameAs: [siteConfig.googleReviewsUrl],
+  sameAs: [siteConfig.googleReviewsUrl, siteConfig.instagramUrl, siteConfig.facebookUrl],
   priceRange: "$$",
   areaServed: siteConfig.serviceAreas.map((name) => ({ "@type": "City", name })),
   openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "00:00", closes: "23:59" }],

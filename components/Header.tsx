@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { FocusEvent, useEffect, useState } from "react";
 import { navigation, siteConfig } from "@/lib/site";
 import { services } from "@/lib/services";
 import { BrandMark } from "./BrandMark";
@@ -12,10 +12,20 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
 
   const closeMenu = () => {
     setOpen(false);
     setServicesOpen(false);
+    setDesktopServicesOpen(false);
+  };
+
+  const closeDesktopServicesOnBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) setDesktopServicesOpen(false);
   };
 
   return (
@@ -27,20 +37,20 @@ export function Header() {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             if (item.href === "/services") {
               return (
-                <div className="nav-dropdown" key={item.href}>
-                  <Link className={active ? "active" : ""} href={item.href}>
+                <div className="nav-dropdown" key={item.href} onMouseEnter={() => setDesktopServicesOpen(true)} onMouseLeave={() => setDesktopServicesOpen(false)} onFocusCapture={() => setDesktopServicesOpen(true)} onBlurCapture={closeDesktopServicesOnBlur} onKeyDown={(event) => { if (event.key === "Escape") setDesktopServicesOpen(false); }}>
+                  <Link className={active ? "active" : ""} href={item.href} onClick={() => setDesktopServicesOpen(false)} aria-expanded={desktopServicesOpen}>
                     Services <ChevronDown aria-hidden="true" size={15} />
                   </Link>
-                  <div className="dropdown-panel">
-                    <Link href="/services">All Services</Link>
+                  <div className={`dropdown-panel${desktopServicesOpen ? " open" : ""}`}>
+                    <Link href="/services" onClick={() => setDesktopServicesOpen(false)}>All Services</Link>
                     {services.map((service) => (
-                      <Link href={`/services/${service.slug}`} key={service.slug}>{service.shortTitle}</Link>
+                      <Link href={`/services/${service.slug}`} key={service.slug} onClick={() => setDesktopServicesOpen(false)}>{service.shortTitle}</Link>
                     ))}
                   </div>
                 </div>
               );
             }
-            return <Link className={active ? "active" : ""} href={item.href} key={item.href}>{item.label}</Link>;
+            return <Link className={active ? "active" : ""} href={item.href} key={item.href} onClick={closeMenu}>{item.label}</Link>;
           })}
         </nav>
         <div className="header-actions">

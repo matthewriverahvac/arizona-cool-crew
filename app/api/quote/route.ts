@@ -58,24 +58,26 @@ export async function POST(request: NextRequest) {
   const fields = {
     Name: escapeHtml(lead.name),
     Phone: escapeHtml(lead.phone),
-    Email: escapeHtml(lead.email || "Not supplied"),
+    Email: escapeHtml(lead.email),
     Service: escapeHtml(lead.service),
     Property: escapeHtml(lead.propertyType),
     Location: escapeHtml(lead.cityZip),
     Message: escapeHtml(lead.message).replace(/\n/g, "<br>"),
   };
-  const text = `New Cool Fox service request\n\nSubmission: ${id}\nName: ${lead.name}\nPhone: ${lead.phone}\nEmail: ${lead.email || "Not supplied"}\nService: ${lead.service}\nProperty: ${lead.propertyType}\nCity or ZIP: ${lead.cityZip}\n\nMessage:\n${lead.message}`;
+  const text = `New Cool Fox service request\n\nSubmission: ${id}\nName: ${lead.name}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nService: ${lead.service}\nProperty: ${lead.propertyType}\nCity or ZIP: ${lead.cityZip}\n\nMessage:\n${lead.message}`;
   const html = `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;background:#0b0b0b;color:#f6f0e5;padding:32px;border-top:5px solid #d7a53a"><h1 style="font-family:Georgia,serif;color:#f0c568">New service request</h1><p style="color:#bdb5a7">Submission ${id}</p><table style="width:100%;border-collapse:collapse">${Object.entries(fields).map(([label, value]) => `<tr><th style="text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #393329;color:#f0c568">${label}</th><td style="padding:10px;border-bottom:1px solid #393329">${value}</td></tr>`).join("")}</table></div>`;
 
   try {
     const resend = new Resend(apiKey);
-    const internal = await resend.emails.send({ from, to: [to], subject: `Website lead: ${lead.service} in ${lead.cityZip}`, html, text, ...(lead.email ? { replyTo: lead.email } : {}) });
-    if (internal.error) throw new Error(`ProviderError:${internal.error.name}`);
-    if (lead.email) {
-      const acknowledgement = await resend.emails.send({ from, to: [lead.email], subject: "Cool Fox received your service request", html: `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;background:#0b0b0b;color:#f6f0e5;padding:32px;border-top:5px solid #d7a53a"><h1 style="font-family:Georgia,serif;color:#f0c568">We received your request.</h1><p>Thanks for contacting Cool Fox Heating & Cooling. Our service team will follow up about your request.</p><p>For urgent help, call <a style="color:#f0c568" href="tel:+16238891281">${siteConfig.phone}</a>.</p><p><a style="color:#f0c568" href="${siteUrl}/services">Explore Cool Fox services</a></p><p style="color:#bdb5a7">Reference ${id}</p></div>`, text: `We received your Cool Fox service request. Our service team will follow up. For urgent help, call ${siteConfig.phone}. Reference ${id}.` });
-      if (acknowledgement.error) console.error("Quote acknowledgement failed", { id, timestamp: new Date().toISOString(), errorClass: acknowledgement.error.name });
-    }
-    console.info("Quote delivered", { id, providerResult: internal.data?.id ?? "accepted", timestamp: new Date().toISOString() });
+    const acknowledgementHtml = `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;background:#0b0b0b;color:#f6f0e5;padding:32px;border-top:5px solid #d7a53a"><h1 style="font-family:Georgia,serif;color:#f0c568">We received your request.</h1><p>Hi ${escapeHtml(lead.name)},</p><p>Thank you for contacting Cool Fox Heating & Cooling. Your request is now with our service team, and someone will follow up using the contact information you provided.</p><p>For urgent help, call <a style="color:#f0c568" href="tel:+16238891281">${siteConfig.phone}</a>.</p><p><a style="color:#f0c568" href="${siteUrl}/services">Explore Cool Fox services</a></p><p style="color:#bdb5a7">Confirmation ${id}</p></div>`;
+    const acknowledgementText = `Hi ${lead.name},\n\nThank you for contacting Cool Fox Heating & Cooling. Your request is now with our service team, and someone will follow up using the contact information you provided.\n\nFor urgent help, call ${siteConfig.phone}.\n\nConfirmation ${id}.`;
+    const delivery = await resend.batch.send([
+      { from, to: [to], replyTo: lead.email, subject: `Website lead: ${lead.service} in ${lead.cityZip}`, html, text },
+      { from, to: [lead.email], subject: "Cool Fox received your service request", html: acknowledgementHtml, text: acknowledgementText },
+    ], { batchValidation: "strict" });
+    if (delivery.error) throw new Error(`ProviderError:${delivery.error.name}`);
+    const providerResult = delivery.data?.data.map((email) => email.id).join(",") ?? "accepted";
+    console.info("Quote and acknowledgement delivered", { id, providerResult, timestamp: new Date().toISOString() });
     return NextResponse.json({ ok: true, id });
   } catch (error) {
     recentSubmissions.delete(duplicateKey);

@@ -13,10 +13,13 @@ import { siteConfig } from "@/lib/site";
 
 export default function HomePage() {
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];
+  const featuredProjectImages = featuredProject
+    ? [featuredProject.gallery[10], featuredProject.gallery[13], featuredProject.gallery[14], featuredProject.gallery[12]].filter(Boolean)
+    : [];
   return (
     <>
       <section className="home-hero">
-        <Image className="hero-image" src="/images/cool-fox-hero.png" alt="Cool Fox HVAC technician servicing an outdoor air conditioner at an Arizona home" fill priority sizes="100vw" />
+        <Image className="hero-image" src="/images/cool-fox-hero-wide-v2.webp" alt="Cool Fox HVAC technician servicing an outdoor air conditioner at an Arizona home" fill priority sizes="100vw" />
         <div className="hero-shade" />
         <div className="shell hero-content">
           <p className="eyebrow">Family owned in Arizona</p>
@@ -57,7 +60,7 @@ export default function HomePage() {
           </div>
           {featuredProject && (
             <Link className="home-project-collage" href={`/projects/${featuredProject.slug}`} aria-label={`View ${featuredProject.title}`}>
-              {featuredProject.gallery.slice(9, 13).map((image, index) => <Image className={index === 0 ? "collage-primary" : ""} src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 900px) 50vw, 28vw" key={image.src} />)}
+              {featuredProjectImages.map((image, index) => <Image className={index === 0 ? "collage-primary" : ""} src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(max-width: 900px) 50vw, 28vw" key={image.src} />)}
               <span>{featuredProject.gallery.length} project photos</span>
             </Link>
           )}

@@ -41,7 +41,7 @@ export function ContactForm({ initialService = "" }: { initialService?: string }
       const result = await response.json();
       if (response.ok && result.ok) {
         setStatus("success");
-        setMessage("Thank you. Your request has been sent to the Cool Fox service team.");
+        setMessage("Your request was sent to the Cool Fox service team, and a confirmation was emailed to you.");
         form.reset();
         return;
       }
@@ -72,13 +72,13 @@ export function ContactForm({ initialService = "" }: { initialService?: string }
       <div className="form-heading">
         <p className="eyebrow">Request Service</p>
         <h2>Tell us how we can help</h2>
-        <p>Share a few details and the Cool Fox team will follow up.</p>
+        <p>Share a few details. Cool Fox will receive your request and email you a confirmation.</p>
       </div>
       <div className="form-grid">
-        <label>Name <span aria-hidden="true">*</span><input name="name" autoComplete="name" required aria-describedby={errorFor("name") ? "name-error" : undefined} />{errorFor("name") && <small id="name-error">{errorFor("name")}</small>}</label>
-        <label>Phone <span aria-hidden="true">*</span><input name="phone" type="tel" autoComplete="tel" required aria-describedby={errorFor("phone") ? "phone-error" : undefined} />{errorFor("phone") && <small id="phone-error">{errorFor("phone")}</small>}</label>
-        <label>Email <span className="optional">Optional</span><input name="email" type="email" autoComplete="email" aria-describedby={errorFor("email") ? "email-error" : undefined} />{errorFor("email") && <small id="email-error">{errorFor("email")}</small>}</label>
-        <label>Service <span aria-hidden="true">*</span>
+        <label><span className="field-label">Name <span aria-hidden="true">*</span></span><input name="name" autoComplete="name" required aria-describedby={errorFor("name") ? "name-error" : undefined} />{errorFor("name") && <small id="name-error">{errorFor("name")}</small>}</label>
+        <label><span className="field-label">Phone <span aria-hidden="true">*</span></span><input name="phone" type="tel" autoComplete="tel" required aria-describedby={errorFor("phone") ? "phone-error" : undefined} />{errorFor("phone") && <small id="phone-error">{errorFor("phone")}</small>}</label>
+        <label><span className="field-label">Email <span aria-hidden="true">*</span></span><input name="email" type="email" autoComplete="email" required aria-describedby={errorFor("email") ? "email-error" : undefined} />{errorFor("email") && <small id="email-error">{errorFor("email")}</small>}</label>
+        <label><span className="field-label">Service <span aria-hidden="true">*</span></span>
           <select name="service" defaultValue={initialService} required aria-describedby={errorFor("service") ? "service-error" : undefined}>
             <option value="" disabled>Select a service</option>
             {services.map((service) => <option value={service.slug} key={service.slug}>{service.shortTitle}</option>)}
@@ -90,11 +90,11 @@ export function ContactForm({ initialService = "" }: { initialService?: string }
           <label className="radio"><input type="radio" name="propertyType" value="residential" defaultChecked /> Residential</label>
           <label className="radio"><input type="radio" name="propertyType" value="commercial" /> Commercial</label>
         </fieldset>
-        <label>City or ZIP code <span aria-hidden="true">*</span><input name="cityZip" autoComplete="postal-code" required aria-describedby={errorFor("cityZip") ? "city-error" : undefined} />{errorFor("cityZip") && <small id="city-error">{errorFor("cityZip")}</small>}</label>
-        <label className="full-field">How can we help? <span aria-hidden="true">*</span><textarea name="message" rows={5} required maxLength={2000} aria-describedby={errorFor("message") ? "message-error" : undefined} />{errorFor("message") && <small id="message-error">{errorFor("message")}</small>}</label>
+        <label><span className="field-label">City or ZIP code <span aria-hidden="true">*</span></span><input name="cityZip" autoComplete="postal-code" required aria-describedby={errorFor("cityZip") ? "city-error" : undefined} />{errorFor("cityZip") && <small id="city-error">{errorFor("cityZip")}</small>}</label>
+        <label className="full-field"><span className="field-label">How can we help? <span aria-hidden="true">*</span></span><textarea name="message" rows={5} required maxLength={2000} aria-describedby={errorFor("message") ? "message-error" : undefined} />{errorFor("message") && <small id="message-error">{errorFor("message")}</small>}</label>
         <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
       </div>
-      <p className="form-consent">By submitting this form, you agree that Cool Fox may contact you about this service request. See our <a href="/privacy">privacy policy</a>.</p>
+      <p className="form-consent">By submitting this form, you agree that Cool Fox may contact you about this service request. A confirmation will be sent to the email address above. See our <a href="/privacy">privacy policy</a>.</p>
       {message && <p className="form-message error" role="alert">{message}</p>}
       <button className="button button-gold form-submit" type="submit" disabled={status === "sending"}>
         {status === "sending" && <LoaderCircle className="spin" aria-hidden="true" />} {status === "sending" ? "Sending Request" : "Send Service Request"}

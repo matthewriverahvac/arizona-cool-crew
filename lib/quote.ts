@@ -5,7 +5,7 @@ const cleanText = (max: number) => z.string().trim().min(1).max(max);
 export const quoteSchema = z.object({
   name: cleanText(100),
   phone: z.string().trim().min(7).max(30).regex(/^[0-9+().\-\s]+$/, "Enter a valid phone number"),
-  email: z.union([z.literal(""), z.email("Enter a valid email address").max(254)]).optional().default(""),
+  email: z.email("Enter a valid email address").trim().max(254),
   service: cleanText(80),
   propertyType: z.enum(["residential", "commercial"]),
   cityZip: cleanText(100),

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { Clock3, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { locations } from "@/lib/locations";
 import { services } from "@/lib/services";
 import { siteConfig } from "@/lib/site";
@@ -13,6 +13,10 @@ export function Footer() {
           <BrandMark compact />
           <p>Family owned heating and cooling for the Valley and Northern Arizona.</p>
           <p className="license-line">{siteConfig.legalName}<br />ROC {siteConfig.rocNumber}</p>
+          <div className="social-links" aria-label="Cool Fox social media">
+            <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Cool Fox on Instagram"><Instagram aria-hidden="true" /></a>
+            <a href={siteConfig.facebookUrl} target="_blank" rel="noreferrer" aria-label="Cool Fox on Facebook"><Facebook aria-hidden="true" /></a>
+          </div>
         </div>
         <div>
           <h2>Services</h2>
