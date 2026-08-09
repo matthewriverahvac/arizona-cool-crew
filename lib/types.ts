@@ -17,6 +17,8 @@ export type SiteConfig = {
   email: string;
   rocNumber: string;
   baseUrl: string;
+  googleReviewsUrl: string;
+  googleReviewCountLabel: string;
   serviceAreas: string[];
   claims: BusinessClaim[];
 };

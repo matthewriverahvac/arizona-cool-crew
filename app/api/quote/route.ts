@@ -40,7 +40,10 @@ export async function POST(request: NextRequest) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = siteConfig.email;
-  const from = process.env.LEAD_FROM_EMAIL || "Website Leads <quotes@notify.cool-fox.com>";
+  const configuredFrom = process.env.LEAD_FROM_EMAIL?.trim();
+  const from = configuredFrom && !configuredFrom.includes("@notify.cool-fox.com")
+    ? configuredFrom
+    : "Website Leads <quotes@cool-fox.com>";
   const siteUrl = process.env.SITE_URL || siteConfig.baseUrl;
   if (!apiKey) {
     console.error("Quote delivery configuration missing", { timestamp: new Date().toISOString(), errorClass: "ConfigurationError" });

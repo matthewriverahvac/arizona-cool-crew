@@ -17,10 +17,10 @@ Use `npm run check` before deployment. It runs the published-copy scan, TypeScri
 The quote endpoint routes every internal lead to `Service@cool-fox.com` and sends an acknowledgement when the customer supplies an email address. Production requires:
 
 - `RESEND_API_KEY`
-- `LEAD_FROM_EMAIL=Website Leads <quotes@notify.cool-fox.com>`
+- `LEAD_FROM_EMAIL=Website Leads <quotes@cool-fox.com>`
 - `SITE_URL=https://www.cool-fox.com`
 
-Verify `notify.cool-fox.com` in Resend by adding its SPF and DKIM records. Keep the existing root Microsoft mail records in place. The endpoint fails closed when configuration is missing.
+The `cool-fox.com` sending domain must remain verified in Resend. Keep the existing Microsoft MX records in place. Resend's sending records and Microsoft's inbound mail records serve different purposes. The endpoint fails closed when configuration is missing.
 
 ## Photo intake
 

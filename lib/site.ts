@@ -8,6 +8,8 @@ export const siteConfig: SiteConfig = {
   email: "Service@cool-fox.com",
   rocNumber: "361981",
   baseUrl: "https://www.cool-fox.com",
+  googleReviewsUrl: "https://share.google/64YlER5JA3zSkTeBu",
+  googleReviewCountLabel: "50+ Google reviews",
   serviceAreas: [
     "Phoenix",
     "Glendale",

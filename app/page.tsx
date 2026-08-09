@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BadgeCheck, CalendarClock, Phone, ShieldCheck, UsersRound } from "lucide-react";
 import { FaqList } from "@/components/FaqList";
+import { BeforeAfterFeature } from "@/components/BeforeAfterFeature";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { generalFaqs } from "@/lib/faq";
@@ -60,6 +61,19 @@ export default function HomePage() {
               <span>{featuredProject.gallery.length} project photos</span>
             </Link>
           )}
+        </div>
+      </section>
+
+      <section className="section shell comparison-section">
+        <SectionHeading eyebrow="Project Transformation" title="See the finished work in context" text="This rooftop package-unit installation shows the clean, careful result. The illustrative starting image gives the comparison a clear visual reference until the original before photo is added." align="center" />
+        <BeforeAfterFeature />
+        <div className="center-action"><Link className="button button-outline" href="/projects">View Full Project Portfolio</Link></div>
+      </section>
+
+      <section className="review-proof-strip">
+        <div className="shell review-proof-inner">
+          <div><p className="eyebrow">Real Customer Feedback</p><h2>{siteConfig.googleReviewCountLabel}</h2><p>See current ratings, customer names, dates, and original feedback on the verified Google profile.</p></div>
+          <a className="button button-gold" href={siteConfig.googleReviewsUrl} target="_blank" rel="noreferrer">Read Reviews on Google</a>
         </div>
       </section>
 
