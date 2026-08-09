@@ -6,30 +6,29 @@ export function BeforeAfterFeature({ compact = false }: { compact?: boolean }) {
       <figure>
         <div className="before-after-image">
           <Image
-            src="/images/projects/universal-comparison/rooftop-unit__illustrative-before.webp"
-            alt="Illustrative view of an older weathered rooftop HVAC package unit at the project site"
+            src="/images/projects/rooftop-package-unit-care/rooftop-package-unit-care-b__before__01.webp"
+            alt="Original rooftop packaged HVAC system before replacement by Cool Fox"
             width={1200}
             height={1600}
             sizes="(max-width: 700px) 100vw, 42vw"
           />
-          <span>Illustrative Before</span>
+          <span>Before</span>
         </div>
-        <figcaption>A visual stand-in showing the type of aging equipment Cool Fox replaces.</figcaption>
+        <figcaption>The original rooftop system before Cool Fox began the replacement.</figcaption>
       </figure>
       <figure>
         <div className="before-after-image">
           <Image
-            src="/images/projects/universal-comparison/rooftop-unit__after.webp"
-            alt="Completed rooftop HVAC package unit installation photographed by Cool Fox"
+            src="/images/projects/rooftop-package-unit-care/rooftop-package-unit-care-b__after__01.webp"
+            alt="New rooftop packaged HVAC system after replacement by Cool Fox"
             width={1200}
             height={1600}
             sizes="(max-width: 700px) 100vw, 42vw"
           />
-          <span>Completed Project</span>
+          <span>After</span>
         </div>
-        <figcaption>The actual finished rooftop installation photographed by the Cool Fox team.</figcaption>
+        <figcaption>The completed rooftop replacement, installed and photographed by Cool Fox.</figcaption>
       </figure>
-      <p className="comparison-disclosure">The before image is an illustrative edit of the completed job-site photo. It will be replaced when the matching original before photo is available.</p>
     </div>
   );
 }
